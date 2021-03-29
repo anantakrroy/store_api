@@ -20,22 +20,30 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
 const index = async (_req: Request, res: Response) => {
     try {
         const users = await user.index();
-        res.json(users);
+        if (users.length === 0) {
+            res.json({ "message": "No users found!" });
+        } else {
+            res.json(users);
+        }
     } catch (error) {
         res.status(400);
-        res.json(error);
+        res.json({ "message": error.message });
     }
 }
 
 const show = async (req: Request, res: Response) => {
     try {
-        const id =  req.params.id;
+        const id = req.params.id;
         const showUser = await user.show(id);
-        res.json(showUser);
+        if (showUser) {
+            res.json(showUser);
+        } else {
+            res.json({ "message": `No user found with id = ${id}` });
+        }
     } catch (error) {
         console.log(error);
         res.status(400);
-        res.json(error);
+        res.json({ "message": error.message });
     }
 }
 
@@ -51,7 +59,7 @@ const create = async (req: Request, res: Response) => {
         res.json(userCreated);
     } catch (error) {
         res.status(400);
-        res.json(error);
+        res.json({ "message": error.message });
     }
 }
 

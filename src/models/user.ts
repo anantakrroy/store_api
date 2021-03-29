@@ -4,9 +4,12 @@ import bcrypt from 'bcrypt';
 const saltRounds = process.env.SALT_ROUNDS || '';
 const pepper = process.env.BCRYPT_PASSWORD;
 
+
+
 export type User = {
-    firstName: string,
-    lastName: string,
+    id ?: number,
+    first_name: string,
+    last_name: string,
     password: string
 };
 
@@ -41,10 +44,10 @@ export class Users {
     async create(user: User): Promise<User> {
         try {
             const conn = await Client.connect();
-            const sql = 'INSERT INTO users(first_name, last_name, password_digest) VALUES ($1,$2,$3) RETURNING *';
+            const sql = 'INSERT INTO users(first_name, last_name, password) VALUES ($1,$2,$3) RETURNING *';
 
             const hash = bcrypt.hashSync(user.password + pepper, parseInt(saltRounds));
-            const result = await conn.query(sql, [user.firstName, user.lastName, hash]);
+            const result = await conn.query(sql, [user.first_name, user.last_name, hash]);
             return result.rows[0];
         } catch (err) {
             throw new Error(`Cannot create new user : ${err}`);

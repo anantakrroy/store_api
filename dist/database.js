@@ -16,7 +16,7 @@ if (ENV === 'dev') {
         host: PG_HOST
     });
 }
-if (ENV === 'test') {
+else if (ENV === 'test') {
     Client = new pg_1.Pool({
         user: PG_USER,
         database: PG_DB_TEST,

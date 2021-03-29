@@ -35,7 +35,7 @@ class Orders {
         try {
             const conn = await database_1.default.connect();
             const sql = 'INSERT INTO orders(user_id,status) VALUES($1, $2) RETURNING *';
-            const result = await conn.query(sql, [order.userId, order.status]);
+            const result = await conn.query(sql, [order.user_id, order.status]);
             return result.rows[0];
         }
         catch (err) {
@@ -55,17 +55,17 @@ class Orders {
         }
     }
     // Get current order by user
-    async getOrder(userId) {
+    async getOrder(user_id) {
         try {
             const conn = await database_1.default.connect();
             const sql = 'SELECT order_id,user_id,product_id,quantity,status FROM orders INNER JOIN order_products ON orders.user_id=($1)';
-            const result = await conn.query(sql, [userId]);
+            const result = await conn.query(sql, [user_id]);
             // console.log('Get order by user from db >> ', result);
             return result.rows;
         }
         catch (error) {
             // console.log(error);
-            throw new Error(`Unable to get order for user : ${userId}`);
+            throw new Error(`Unable to get order for user : ${user_id}`);
         }
     }
 }

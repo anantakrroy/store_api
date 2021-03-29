@@ -39,9 +39,9 @@ class Users {
     async create(user) {
         try {
             const conn = await database_1.default.connect();
-            const sql = 'INSERT INTO users(first_name, last_name, password_digest) VALUES ($1,$2,$3) RETURNING *';
+            const sql = 'INSERT INTO users(first_name, last_name, password) VALUES ($1,$2,$3) RETURNING *';
             const hash = bcrypt_1.default.hashSync(user.password + pepper, parseInt(saltRounds));
-            const result = await conn.query(sql, [user.firstName, user.lastName, hash]);
+            const result = await conn.query(sql, [user.first_name, user.last_name, hash]);
             return result.rows[0];
         }
         catch (err) {

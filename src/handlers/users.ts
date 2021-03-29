@@ -49,8 +49,8 @@ const show = async (req: Request, res: Response) => {
 
 const create = async (req: Request, res: Response) => {
     const newUser: User = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+        first_name: req.body.firstName,
+        last_name: req.body.lastName,
         password: req.body.password
     }
     try {

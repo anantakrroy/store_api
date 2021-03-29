@@ -3,6 +3,15 @@ import { Order, Orders } from '../order';
 const order = new Orders();
 
 describe(' >>> Order Model', () => {
+    let originalTimeout:number;
+    beforeEach(function() {
+        originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000;
+    });
+
+    afterEach(function() {
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+    });
     it('should have an index method', () => {
         expect(order.index).toBeDefined();
     });

@@ -14,11 +14,12 @@ const address = "0.0.0.0:3000";
 app.use(cors_1.default());
 app.use(body_parser_1.default.json());
 app.get('/', function (req, res) {
-    res.send('Hello World!');
+    res.send('Check out routes on users, products, orders...');
 });
 users_1.default(app);
 products_1.default(app);
 orders_1.default(app);
-app.listen(3000, function () {
+const server = app.listen(3000, function () {
     console.log(`starting app on: ${address}`);
 });
+exports.default = server;

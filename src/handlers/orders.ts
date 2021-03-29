@@ -8,7 +8,7 @@ const orderRoutes = (app: express.Application) => {
     app.get('/orders', index);
     app.get('/orders/:id', show);
     app.post('/orders/users/:userId', verifyToken, create);
-    app.post('/orders/:id/products', addProduct);
+    app.post('/orders/:id/products',verifyToken, addProduct);
     app.get('/orders/users/:userId', verifyToken, getOrder);
 }
 
@@ -43,7 +43,7 @@ const show = async (req: Request, res: Response) => {
     try {
         const orderId = req.params.id;
         const showOrder = await orders.show(orderId);
-        console.log(`Order by id : ${orderId} : ${showOrder}`);
+        // console.log(`Order by id : ${orderId} : ${showOrder}`);
         if (showOrder) {
             res.json(showOrder);
         } else {
@@ -59,7 +59,7 @@ const show = async (req: Request, res: Response) => {
 
 const create = async (req: Request, res: Response) => {
     const newOrder = {
-        userId: +req.params.userId,
+        user_id: +req.params.userId,
         status: req.body.status
     }
     try {

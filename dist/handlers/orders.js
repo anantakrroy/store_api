@@ -62,7 +62,7 @@ const show = async (req, res) => {
 };
 const create = async (req, res) => {
     const newOrder = {
-        userId: +req.params.userId,
+        user_id: +req.params.userId,
         status: req.body.status
     };
     try {

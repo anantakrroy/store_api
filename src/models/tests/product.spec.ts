@@ -3,6 +3,15 @@ import { Product, Products } from '../product';
 const product = new Products();
 
 describe(' >>> Product Model', () => {
+    let originalTimeout:number;
+    beforeEach(function() {
+        originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000;
+    });
+
+    afterEach(function() {
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+    });
     it('should have an index method', () => {
         expect(product.index).toBeDefined();
     });

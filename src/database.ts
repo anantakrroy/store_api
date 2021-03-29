@@ -14,7 +14,8 @@ if (ENV === 'dev') {
         password: PG_PWD,
         host: PG_HOST
     })
-}else if (ENV === 'test') {
+}
+if (ENV === 'test') {
     Client = new Pool({
         user: PG_USER,
         database: PG_DB_TEST,

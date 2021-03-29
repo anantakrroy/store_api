@@ -22,7 +22,6 @@ export class Products {
     // Show product by id
     async show(id: string): Promise<Product> {
         try {
-            console.log('inside show product');
             const conn = await Client.connect();
             const sql = 'SELECT * FROM products WHERE id=($1)';
             const result = await conn.query(sql, [id]);

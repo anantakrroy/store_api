@@ -13,13 +13,13 @@ CREATE TABLE products(
 
 CREATE TABLE orders(
     id serial PRIMARY KEY,
-    user_id bigint REFERENCES users(id),
+    user_id INTEGER REFERENCES users(id),
     status VARCHAR(15) NOT NULL CHECK(status = 'active' OR status = 'completed')
 );
 
 CREATE TABLE order_products(
     id serial PRIMARY KEY,
     quantity INTEGER NOT NULL CHECK(quantity > 0),
-    order_id bigint REFERENCES orders(id),
-    product_id bigint REFERENCES products(id)
+    order_id INTEGER REFERENCES orders(id),
+    product_id INTEGER REFERENCES products(id)
 );

@@ -4,14 +4,6 @@ import jwt from 'jsonwebtoken';
 
 const orders = new Orders();
 
-const orderRoutes = (app: express.Application) => {
-    app.get('/orders', index);
-    app.get('/orders/:id', show);
-    app.post('/orders/users/:userId', verifyToken, create);
-    app.post('/orders/:id/products',verifyToken, addProduct);
-    app.get('/orders/users/:userId', verifyToken, getOrder);
-}
-
 // Authorisation middleware
 const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -74,8 +66,8 @@ const create = async (req: Request, res: Response) => {
 
 const addProduct = async (req: Request, res: Response) => {
     const orderId: number = +req.params.id;
-    const prodId: number = +req.body.productId;
-    const quantity: number = +req.body.quantity;
+    const prodId: number = req.body.productId;
+    const quantity: number = req.body.quantity;
     try {
         const addProdToOrder = await orders.addProduct(quantity, orderId, prodId);
         // console.log(`Product create ${addProdToOrder} on order >> ${orderId}`);
@@ -102,6 +94,14 @@ const getOrder = async (req: Request, res: Response) => {
         res.status(400);
         res.json({"message" : error.message});
     }
+}
+
+const orderRoutes = (app: express.Application) => {
+    app.get('/orders', index);
+    app.get('/orders/:id', show);
+    app.post('/orders/users/:userId', verifyToken, create);
+    app.post('/orders/:id/products',verifyToken, addProduct);
+    app.get('/orders/users/:userId', verifyToken, getOrder);
 }
 
 export default orderRoutes;

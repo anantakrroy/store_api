@@ -1,0 +1,260 @@
+{
+	"id": "378d78f0-39c0-4a19-9621-7f1adceaac24",
+	"name": "Storefront API",
+	"timestamp": "2021-03-30T18:08:13.924Z",
+	"collection_id": "d122c481-5f27-47a1-8459-e6421ce8a8fd",
+	"folder_id": 0,
+	"environment_id": "84f4ce46-b946-4c24-a208-2fce14a96ebd",
+	"totalPass": 0,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "e09cacd4-449d-4dff-bba2-edf6aab19c84",
+			"name": "Get users",
+			"url": "http://0.0.0.0:3000/users",
+			"time": 44,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				44
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "0bc58288-3ac6-4edb-b2af-46479cfc4627",
+			"name": "Get Products",
+			"url": "http://0.0.0.0:3000/products",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				5
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "1e3d1959-ca04-4238-9cbb-73cc727e7cf8",
+			"name": "Get Products by productID",
+			"url": "http://0.0.0.0:3000/products/1",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				4
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "cdf9052a-8fb5-4a71-a2ec-cff214fc7bb3",
+			"name": "Get User by ID",
+			"url": "http://0.0.0.0:3000/users/2",
+			"time": 30,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				30
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "af82119f-53d4-4ed8-837d-5427283e4d81",
+			"name": "Create New user",
+			"url": "http://0.0.0.0:3000/users",
+			"time": 101,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				101
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "22d67e96-3c17-4b07-830c-7248b5dd35f3",
+			"name": "Create New product",
+			"url": "http://0.0.0.0:3000/products",
+			"time": 28,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				28
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "a5299ca3-4ccc-4e75-a2b7-1dd4ef6e5499",
+			"name": "Get orders by userId",
+			"url": "http://0.0.0.0:3000/orders/users/1",
+			"time": 29,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				29
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "dcdeec34-09a6-4bbe-abcd-163aa2f49736",
+			"name": "Create order by user with userId",
+			"url": "http://0.0.0.0:3000/orders/users/2",
+			"time": 144,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				144
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "d9491a99-846f-46ae-a9c8-4b6152886a37",
+			"name": "Get all Orders",
+			"url": "http://0.0.0.0:3000/orders",
+			"time": 28,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				28
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "f096b355-3e61-4e46-835c-4c3b745e020b",
+			"name": "Get order by id",
+			"url": "http://0.0.0.0:3000/orders/1",
+			"time": 28,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				28
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "6896600d-ea9c-4a46-add0-181a900e02b0",
+			"name": "Add product to order",
+			"url": "http://0.0.0.0:3000/orders/2/products",
+			"time": 29,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				29
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 470,
+	"collection": {
+		"requests": [
+			{
+				"id": "e09cacd4-449d-4dff-bba2-edf6aab19c84",
+				"method": "GET"
+			},
+			{
+				"id": "0bc58288-3ac6-4edb-b2af-46479cfc4627",
+				"method": "GET"
+			},
+			{
+				"id": "1e3d1959-ca04-4238-9cbb-73cc727e7cf8",
+				"method": "GET"
+			},
+			{
+				"id": "cdf9052a-8fb5-4a71-a2ec-cff214fc7bb3",
+				"method": "GET"
+			},
+			{
+				"id": "af82119f-53d4-4ed8-837d-5427283e4d81",
+				"method": "POST"
+			},
+			{
+				"id": "22d67e96-3c17-4b07-830c-7248b5dd35f3",
+				"method": "POST"
+			},
+			{
+				"id": "a5299ca3-4ccc-4e75-a2b7-1dd4ef6e5499",
+				"method": "GET"
+			},
+			{
+				"id": "dcdeec34-09a6-4bbe-abcd-163aa2f49736",
+				"method": "POST"
+			},
+			{
+				"id": "d9491a99-846f-46ae-a9c8-4b6152886a37",
+				"method": "GET"
+			},
+			{
+				"id": "f096b355-3e61-4e46-835c-4c3b745e020b",
+				"method": "GET"
+			},
+			{
+				"id": "6896600d-ea9c-4a46-add0-181a900e02b0",
+				"method": "POST"
+			}
+		]
+	}
+}

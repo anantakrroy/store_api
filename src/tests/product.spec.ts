@@ -1,17 +1,17 @@
-import { Product, Products } from '../product';
+import { Product, Products } from '../models/product';
 
 const product = new Products();
 
 describe(' >>> Product Model', () => {
-    let originalTimeout:number;
-    beforeEach(function() {
-        originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000;
-    });
+    // let originalTimeout:number = 50000;
+    // beforeEach(function() {
+    //     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+    //     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
+    // });
 
-    afterEach(function() {
-      jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
-    });
+    // afterEach(function() {
+    //   jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+    // });
     it('should have an index method', () => {
         expect(product.index).toBeDefined();
     });

@@ -19,7 +19,8 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  var filePath = path.join(__dirname, 'sqls', '20210328054537-products-table-up.sql');
+  console.log('Inside test migration file >>> DB value >>> ', db.connection.database);
+  var filePath = path.join(__dirname, 'sqls', '20210330125907-shopping-dev-up.sql');
   return new Promise( function( resolve, reject ) {
     fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
       if (err) return reject(err);
@@ -34,7 +35,7 @@ exports.up = function(db) {
 };
 
 exports.down = function(db) {
-  var filePath = path.join(__dirname, 'sqls', '20210328054537-products-table-down.sql');
+  var filePath = path.join(__dirname, 'sqls', '20210330125907-shopping-dev-down.sql');
   return new Promise( function( resolve, reject ) {
     fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
       if (err) return reject(err);

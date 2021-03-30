@@ -64,7 +64,7 @@ const create = async (req: Request, res: Response) => {
     }
     try {
         const orderCreated = await orders.create(newOrder);
-        console.log('Order create >> ', orderCreated);
+        // console.log('Order create >> ', orderCreated);
         res.json(orderCreated);
     } catch (error) {
         res.status(400);
@@ -74,8 +74,8 @@ const create = async (req: Request, res: Response) => {
 
 const addProduct = async (req: Request, res: Response) => {
     const orderId: number = +req.params.id;
-    const prodId: number = req.body.productId;
-    const quantity: number = req.body.quantity;
+    const prodId: number = +req.body.productId;
+    const quantity: number = +req.body.quantity;
     try {
         const addProdToOrder = await orders.addProduct(quantity, orderId, prodId);
         // console.log(`Product create ${addProdToOrder} on order >> ${orderId}`);

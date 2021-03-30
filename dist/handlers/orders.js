@@ -10,7 +10,7 @@ const orderRoutes = (app) => {
     app.get('/orders', index);
     app.get('/orders/:id', show);
     app.post('/orders/users/:userId', verifyToken, create);
-    app.post('/orders/:id/products', addProduct);
+    app.post('/orders/:id/products', verifyToken, addProduct);
     app.get('/orders/users/:userId', verifyToken, getOrder);
 };
 // Authorisation middleware
@@ -45,7 +45,7 @@ const show = async (req, res) => {
     try {
         const orderId = req.params.id;
         const showOrder = await orders.show(orderId);
-        console.log(`Order by id : ${orderId} : ${showOrder}`);
+        // console.log(`Order by id : ${orderId} : ${showOrder}`);
         if (showOrder) {
             res.json(showOrder);
         }
@@ -67,7 +67,7 @@ const create = async (req, res) => {
     };
     try {
         const orderCreated = await orders.create(newOrder);
-        console.log('Order create >> ', orderCreated);
+        // console.log('Order create >> ', orderCreated);
         res.json(orderCreated);
     }
     catch (error) {
@@ -77,8 +77,8 @@ const create = async (req, res) => {
 };
 const addProduct = async (req, res) => {
     const orderId = +req.params.id;
-    const prodId = req.body.productId;
-    const quantity = req.body.quantity;
+    const prodId = +req.body.productId;
+    const quantity = +req.body.quantity;
     try {
         const addProdToOrder = await orders.addProduct(quantity, orderId, prodId);
         // console.log(`Product create ${addProdToOrder} on order >> ${orderId}`);

@@ -46,12 +46,25 @@ class Orders {
     async addProduct(quantity, order_id, product_id) {
         try {
             const conn = await database_1.default.connect();
-            const sql = 'INSERT INTO order_products(quantity, order_id, product_id) VALUES($1,$2,$3) RETURNING *';
-            const result = await conn.query(sql, [quantity, order_id, product_id]);
-            return result.rows[0];
+            const another_sql = 'SELECT * FROM order_products WHERE order_id=($1) AND product_id=($2)'; // Check if an order with same product id exists.If it does, just update quantity.If not, add a new entry to order_products table
+            const another_result = await conn.query(another_sql, [order_id, product_id]);
+            if (another_result.rows.length === 0) {
+                const sql = 'INSERT INTO order_products(quantity, order_id, product_id) VALUES($1,$2,$3) RETURNING *';
+                const result = await conn.query(sql, [quantity, order_id, product_id]);
+                // console.log('New entry to order product table >> ', another_result.rows);
+                return result.rows[0];
+            }
+            else {
+                // console.log(another_result.rows[0].quantity);
+                let new_qty = another_result.rows[0].quantity + quantity;
+                const sql = 'UPDATE order_products SET quantity=($1) WHERE order_id=($2) AND product_id=($3) RETURNING *';
+                const result = await conn.query(sql, [new_qty, order_id, product_id]);
+                // console.log('New result with updated qty >> ', result.rows[0]);
+                return result.rows[0];
+            }
         }
         catch (err) {
-            throw new Error(`Unable to add product : ${product_id} to order : ${order_id}`);
+            throw new Error(`Unable to add product : ${product_id} to order : ${order_id} . Error : ${err.message}`);
         }
     }
     // Get current order by user

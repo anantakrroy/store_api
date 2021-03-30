@@ -6,6 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../../server"));
 describe('Test USER routes >>> ', () => {
+    // let originalTimeout:number = 50000;
+    // beforeEach(function() {
+    //     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+    //     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
+    // });
+    // afterEach(function() {
+    //   jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+    // });
     it('Test /users GET route ', (done) => {
         supertest_1.default(server_1.default).get('/users')
             .auth('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiV2F0ZXIgQm90dGxlIiwicHJpY2UiOiIyLjk5In0.Flq3cKKZoTs8hWcAaTqJbvcAaJpb3FVi2IXU7rCzvvU', { type: 'bearer' })

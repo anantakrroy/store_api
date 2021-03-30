@@ -21,6 +21,7 @@ const verifyToken = async (req, res, next) => {
         res.json({ "message": error.message });
     }
 };
+// Get all products from db
 const index = async (_req, res) => {
     try {
         const prods = await products.index();
@@ -36,6 +37,7 @@ const index = async (_req, res) => {
         res.json({ "message": error.message });
     }
 };
+// Get product by id from db
 const show = async (req, res) => {
     try {
         const id = req.params.id;
@@ -52,6 +54,7 @@ const show = async (req, res) => {
         res.json({ "message": error.message });
     }
 };
+// Create new product in the db
 const create = async (req, res) => {
     try {
         const newProd = {

@@ -6,6 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../../server"));
 describe('Test PRODUCTS routes >>> ', () => {
+    // let originalTimeout:number = 50000;
+    // beforeEach(function() {
+    //     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+    //     jasmine.DEFAULT_TIMEOUT_INTERVAL = 65000;
+    // });
+    // afterEach(function() {
+    //   jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+    // });
     it('Test /products GET route ', (done) => {
         supertest_1.default(server_1.default).get('/products')
             .expect(200, done)
@@ -18,7 +26,8 @@ describe('Test PRODUCTS routes >>> ', () => {
             .then(async (res) => {
             expect(res.body).toBeTruthy;
             expect(res.body).toEqual({ id: 4, name: 'Table Clock', price: '5.49' });
-        });
+        })
+            .catch(err => console.error(err));
     });
     it('Test /products POST route ', async () => {
         const product = {

@@ -2,15 +2,15 @@
     "dev": {
       "driver": "pg",
       "host": "127.0.0.1",
-      "database": "shopping",
-      "user": "shopping_user",
-      "password": "password123"
+      "database": {"ENV": "PG_DB"},
+      "user": {"ENV": "PG_USER"},
+      "password": {"ENV": "PG_PWD"}
     },
     "test": {
       "driver": "pg",
       "host": "127.0.0.1",
-      "database": "shopping_test",
-      "user": "shopping_user",
-      "password": "password123"
+      "database": {"ENV": "PG_DB_TEST"},
+      "user": {"ENV": "PG_USER"},
+      "password": {"ENV": "PG_PWD"}
     }
   }

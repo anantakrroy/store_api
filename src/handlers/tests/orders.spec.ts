@@ -53,7 +53,7 @@ describe('Test order routes >>> ', () => {
             .expect(200)
             .then(async (res) => {
                 expect(res.body).toBeTruthy;
-                expect(+res.body.productId).toEqual(1);
+                expect(+res.body.product_id).toEqual(1);
                 expect(+res.body.quantity).toEqual(10);
             })
             .catch(err => console.error(err.message));

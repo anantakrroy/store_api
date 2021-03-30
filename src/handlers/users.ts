@@ -17,6 +17,7 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
+// Get all users from db
 const index = async (_req: Request, res: Response) => {
     try {
         const users = await user.index();
@@ -31,6 +32,7 @@ const index = async (_req: Request, res: Response) => {
     }
 }
 
+// Get user from db by user id
 const show = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
@@ -47,6 +49,7 @@ const show = async (req: Request, res: Response) => {
     }
 }
 
+// Create a new user in the db
 const create = async (req: Request, res: Response) => {
     const newUser: User = {
         first_name: req.body.firstName,

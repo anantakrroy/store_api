@@ -19,6 +19,7 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
+// Get all products from db
 const index = async (_req: Request, res: Response) => {
     try {
         const prods = await products.index();
@@ -33,6 +34,7 @@ const index = async (_req: Request, res: Response) => {
     }
 }
 
+// Get product by id from db
 const show = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
@@ -48,6 +50,7 @@ const show = async (req: Request, res: Response) => {
     }
 }
 
+// Create new product in the db
 const create = async(req:Request, res:Response) => {
     try {
         const newProd: Product = {

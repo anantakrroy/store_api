@@ -23,6 +23,7 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
 const index = async (_req: Request, res: Response) => {
     try {
         const prods = await products.index();
+        // console.log('Prods on route /products >> ', prods);
         if(prods.length === 0) {
             res.json({"message":"No products found !"});
         } else {

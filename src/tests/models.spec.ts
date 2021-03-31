@@ -1,21 +1,13 @@
 import { Order, Orders } from '../models/order';
 import { User, Users } from '../models/user';
 import { Product, Products } from '../models/product';
+import Client from '../database';
 
 const order = new Orders();
 const user = new Users();
 const product = new Products();
 
 describe(' >>> User Model', () => {
-    // let originalTimeout: number = 50000;
-    // beforeEach(function () {
-    //     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    //     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
-    // });
-
-    // afterEach(function () {
-    //     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
-    // });
     it('should have an index method', () => {
         expect(user.index).toBeDefined();
     });
@@ -46,15 +38,6 @@ describe(' >>> User Model', () => {
     });
 });
 describe(' >>> Product Model', () => {
-    // let originalTimeout:number = 50000;
-    // beforeEach(function() {
-    //     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    //     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
-    // });
-
-    // afterEach(function() {
-    //   jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
-    // });
     it('should have an index method', () => {
         expect(product.index).toBeDefined();
     });
@@ -84,23 +67,6 @@ describe(' >>> Product Model', () => {
     });
 });
 describe(' >>> Order Model', () => {
-    // let originalTimeout:number = 50000;
-    // beforeEach(function() {
-    //     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    //     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
-    // })
-
-    // afterEach(function() {
-    //   jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
-    // });
-    // const dummyUser = (async() => {
-    //     await user.create({
-    //         first_name: 'Ben',
-    //         last_name: 'Harris',
-    //         password: 'ben123'
-    //     });
-    // })();
-    // console.log('Dummy user >> ', dummyUser);
     it('should have an index method', () => {
         expect(order.index).toBeDefined();
     });
@@ -128,4 +94,4 @@ describe(' >>> Order Model', () => {
         const orderById = await order.show("1");
         expect(orderById).toBeTruthy;
     });
-})
+});

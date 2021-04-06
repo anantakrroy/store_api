@@ -61,7 +61,7 @@ The application uses the following libraries:
 - Migrations contained within the `migrations` directory. Also contains the `test` migration folder to enable db migrate [scoping](https://db-migrate.readthedocs.io/en/latest/Getting%20Started/commands/#scoping) for test database.
 - `src/handlers` contains all the routes of the application. Also, contains the token verification middleware which is required on certain routes.
 - `src/models` contains the Db facing methods to allow the application to interact with the DB.
-- `tests` contains the jasmine test suite on both the routes (`routes.spec.ts`) and models(`models.spec.ts`). Please note that the `random` test feature of jasmine has been set to `false` for testing this project.
+- `tests` contains the jasmine test suite on both the routes (`routes.spec.ts`) and models(`models.spec.ts`).*Please note that the `random` test feature of jasmine has been set to `false` for testing this project.Test the models and routes separately by commenting out tests in one file to test the code in the other file and vice versa.*
 - JWT has been implemented within the project to allow only authorised users to access certain routes. Also , the passwords are stored in a hashed format using `bcrypt` within the db.
 ❌ No plain text passwords ❌
 - The Express application is CORS enabled ✔✔

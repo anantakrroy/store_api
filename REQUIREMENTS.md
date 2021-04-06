@@ -8,8 +8,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Index 
 - Show
 - Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
 
 #### Users
 - Index [token required]
@@ -18,20 +16,36 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Orders
 - Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
 
 ## Data Shapes
+-Shows the model objects shapes
 #### Product
 -  id
 - name
 - price
-- [OPTIONAL] category
+
+```
+type Product = {
+    id: number
+    name: string,
+    price: number
+};
+```
 
 #### User
 - id
 - firstName
 - lastName
 - password
+
+```
+type User = {
+    id ?: number,
+    first_name: string,
+    last_name: string,
+    password: string
+};
+```
 
 #### Orders
 - id
@@ -40,3 +54,92 @@ These are the notes from a meeting with the frontend developer that describe wha
 - user_id
 - status of order (active or complete)
 
+```
+type Order = {
+    user_id: number,
+    status: string
+};
+```
+
+&nbsp;
+&nbsp;
+
+## DB Schemas
+&nbsp;
+### List of relations
+ | Schema | Name           | Type  | Owner         |
+|--------|----------------|-------|---------------|
+| public | migrations     | table | shopping_user |
+| public | order_products | table | shopping_user |
+| public | orders         | table | shopping_user |
+| public | products       | table | shopping_user |
+| public | users          | table | shopping_user |
+
+&nbsp;
+&nbsp;
+
+### Table "public.products"
+ | Column |       Type        | Collation | Nullable |               Default |
+|--------|----------------|-------|---------------|---------|
+ id     | integer           |           | not null | nextval('products_id_seq'::regclass)
+ name   | character varying |           | not null |
+ price  | numeric           |           | not null |
+
+#### Indexes:
+    "products_pkey" PRIMARY KEY, btree (id)
+#### Referenced by:
+    TABLE "order_products" CONSTRAINT "order_products_product_id_fkey" FOREIGN KEY (product_id) REFERENCES products(id)
+
+&nbsp;
+&nbsp;
+
+### Table "public.users"
+   | Column |       Type        | Collation | Nullable |               Default |
+|--------|----------------|-------|---------------|---------|
+ id         | integer           |           | not null | nextval('users_id_seq'::regclass)
+ first_name | character varying |           | not null |
+ last_name  | character varying |           | not null |
+ password   | character varying |           | not null |
+#### Indexes:
+    "users_pkey" PRIMARY KEY, btree (id)
+#### Referenced by:
+    TABLE "orders" CONSTRAINT "orders_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)
+
+&nbsp;
+&nbsp;
+
+### Table "public.orders"
+ | Column |       Type        | Collation | Nullable |               Default |
+|--------|----------------|-------|---------------|---------|
+ id      | integer               |           | not null | nextval('orders_id_seq'::regclass)
+ user_id | integer               |           |          |
+ status  | character varying(15) |           | not null |
+#### Indexes:
+    "orders_pkey" PRIMARY KEY, btree (id)
+#### Check constraints:
+    "orders_status_check" CHECK (status::text = 'active'::text OR status::text = 'completed'::text)
+#### Foreign-key constraints:
+    "orders_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)
+#### Referenced by:
+    TABLE "order_products" CONSTRAINT "order_products_order_id_fkey" FOREIGN KEY (order_id) REFERENCES orders(id)
+
+&nbsp;
+&nbsp;
+
+### Table "public.order_products"
+   | Column |       Type        | Collation | Nullable |               Default |
+|--------|----------------|-------|---------------|---------|
+ id         | integer |           | not null | nextval('order_products_id_seq'::regclass)
+ quantity   | integer |           | not null |
+ order_id   | integer |           |          |
+ product_id | integer |           |          |
+#### Indexes:
+    "order_products_pkey" PRIMARY KEY, btree (id)
+#### Check constraints:
+    "order_products_quantity_check" CHECK (quantity > 0)
+#### Foreign-key constraints:
+    "order_products_order_id_fkey" FOREIGN KEY (order_id) REFERENCES orders(id)
+    "order_products_product_id_fkey" FOREIGN KEY (product_id) REFERENCES products(id)
+
+## DB relations diagram
+**![DB relations diagram](db_relations.png)**

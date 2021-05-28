@@ -23,7 +23,7 @@ On one of the terminal windows , follow the following steps :
     **Create test database**
     - CREATE DATABASE shopping_test;
     - \c shopping_test
-    - GRANT ALL PRIVILEGES ON DATABASE shopping TO shopping_user;
+    - GRANT ALL PRIVILEGES ON DATABASE shopping_test TO shopping_user;
     - Test that it is working run \dt and it should output "No relations found."
 
 - Make sure to use environment variables in a `.env` file to connect to the Db based on the mode of operation i.e `dev` or `test` which is also stored as an enviromental variable `ENV`. The `database.ts` file inside `src` folder is responsible for connecting to the relevant DB.
